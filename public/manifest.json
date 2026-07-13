@@ -1,0 +1,21 @@
+{
+  "name": "LITERIA Premium Reader",
+  "short_name": "LITERIA",
+  "start_url": "/web",
+  "display": "standalone",
+  "background_color": "#fffefa",
+  "theme_color": "#002925",
+  "description": "Premium Digital Library Experience",
+  "icons": [
+    {
+      "src": "/assets/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
