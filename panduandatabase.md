@@ -1,3 +1,64 @@
+# Panduan Setup Database (Literia App)
+
+Karena Git hanya melacak perubahan pada file (kode aplikasi), database lokal (MySQL/MariaDB) **tidak akan ter-clone otomatis** saat Anda melakukan `git clone` pada repositori ini. 
+
+Agar aplikasi bisa berjalan dengan normal di komputer lokal Anda, silakan ikuti panduan setup database di bawah ini:
+
+## Langkah 1: Buat Database Baru di Lokal
+1. Buka aplikasi manajemen database Anda (misalnya **phpMyAdmin** melalui XAMPP, DBeaver, atau TablePlus).
+2. Buat database baru yang masih kosong. Sangat disarankan untuk menamainya **`literia_app`** (sesuai dengan nama bawaan), namun Anda bebas menggunakan nama lain.
+
+## Langkah 2: Import File SQL
+Kami sudah menyediakan file ekspor database di dalam project ini, yaitu:
+- `database.sql` (struktur dan data sampel, disarankan)
+- `database_fresh.sql` (hanya struktur tanpa data sampel)
+
+**Cara Import (via phpMyAdmin):**
+1. Pilih database yang baru saja Anda buat di Langkah 1.
+2. Klik tab **Import**.
+3. Pada bagian *File to import*, klik tombol **Choose File** dan pilih file `database.sql` yang ada di dalam folder project ini.
+4. Scroll ke bawah dan klik tombol **Import** atau **Go**.
+
+## Langkah 3: Konfigurasi File `.env`
+Agar aplikasi CodeIgniter ini bisa terhubung ke database yang baru Anda buat, Anda perlu mengatur kredensial database-nya.
+
+1. Di dalam folder utama project, copy file `env` (bawaan) menjadi `.env`.
+   - *Catatan: File `.env` sengaja di-ignore oleh Git untuk alasan keamanan.*
+2. Buka file `.env` yang baru dibuat menggunakan text editor (VS Code).
+3. Cari bagian konfigurasi database (`# database.default...`), hilangkan tanda pagar (`#`) di depannya agar tidak menjadi komentar, lalu ubah nilainya menjadi seperti ini:
+
+```ini
+database.default.hostname = localhost
+database.default.database = literia_app
+database.default.username = root
+database.default.password = 
+database.default.DBDriver = MySQLi
+```
+*(Sesuaikan `username`, `password`, dan `database` jika pengaturan lokal XAMPP Anda berbeda, secara bawaan XAMPP menggunakan username `root` dengan password kosong).*
+
+## Langkah 4: Install Dependencies & Jalankan Server
+Setelah database terhubung, pastikan Anda menginstal package yang dibutuhkan oleh CodeIgniter dan menjalankan server lokal.
+
+Buka terminal/command prompt di dalam folder project dan jalankan:
+```bash
+composer install
+php spark serve
+```
+
+Aplikasi sekarang dapat diakses melalui browser di alamat: `http://localhost:8080/`
+
+---
+### Info Akun Administrator
+Jika Anda menggunakan file `database.sql`, sebuah akun admin sampel sudah dibuat. Anda bisa login dengan kredensial berikut:
+
+- **Username:** `admin`
+- **Password:** `admin123`
+
+---
+### Script SQL Lengkap
+Jika Anda tidak ingin mengunggah file `database.sql` dan lebih suka *copy-paste* secara manual, Anda bisa menggunakan script SQL di bawah ini pada menu **SQL** di phpMyAdmin:
+
+```sql
 CREATE DATABASE IF NOT EXISTS literia_app;
 USE literia_app;
 
@@ -83,3 +144,4 @@ INSERT IGNORE INTO buku (id_buku, judul, pengarang, penerbit, tahun_terbit, stok
 (10, 'Laut Bercerita', 'Leila S. Chudori', 'Kepustakaan Populer Gramedia', 2017, 6, 'Sastra Indonesia', 'Novel tentang ingatan, kehilangan, keluarga, dan aktivisme mahasiswa pada masa Orde Baru.', 'https://covers.openlibrary.org/b/isbn/9786024246945-L.jpg', 4.8, 379, '9786024246945'),
 (11, 'Cantik Itu Luka', 'Eka Kurniawan', 'Gramedia Pustaka Utama', 2002, 4, 'Sastra Indonesia', 'Saga keluarga dan sejarah Indonesia yang memadukan realisme magis, satire, dan kekerasan politik.', 'https://covers.openlibrary.org/b/isbn/9786020312583-L.jpg', 4.5, 505, '9786020312583'),
 (12, 'Man''s Search for Meaning', 'Viktor E. Frankl', 'Beacon Press', 2006, 5, 'Filsafat', 'Refleksi psikolog dan penyintas kamp konsentrasi tentang makna, penderitaan, dan kebebasan batin manusia.', 'https://covers.openlibrary.org/b/isbn/9780807014271-L.jpg', 4.7, 184, '9780807014271');
+```
