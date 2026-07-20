@@ -1,7 +1,5 @@
 # LITERIA - Premium Digital Library
 
-![LITERIA Banner](https://via.placeholder.com/1200x630/002925/C5A556?text=LITERIA)
-
 ## 📚 Tentang LITERIA
 
 **LITERIA** adalah platform perpustakaan digital premium yang menghadirkan pengalaman katalog perpustakaan privat dengan koleksi buku yang benar-benar terkurasi. Dibangun dengan fokus pada estetika, pengalaman pengguna yang mulus, dan fungsionalitas yang mendalam.
@@ -185,15 +183,6 @@ npx tailwindcss -i ./src/input.css -o ./public/css/output.css --watch
 npx tailwindcss -i ./src/input.css -o ./public/css/output.css --minify
 ```
 
-## 📸 Screenshots
-
-<div align="center">
-  <img src="https://via.placeholder.com/800x450/002925/C5A556?text=Hero+Section" alt="Hero Section" width="45%" />
-  <img src="https://via.placeholder.com/800x450/002925/C5A556?text=Editor%27s+Pick" alt="Editor's Pick" width="45%" />
-  <br/>
-  <img src="https://via.placeholder.com/800x450/002925/C5A556?text=Catalog+View" alt="Catalog" width="45%" />
-  <img src="https://via.placeholder.com/800x450/002925/C5A556?text=Dark+Mode" alt="Dark Mode" width="45%" />
-</div>
 
 ## 🤝 Kontribusi
 
@@ -207,11 +196,6 @@ npx tailwindcss -i ./src/input.css -o ./public/css/output.css --minify
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-## 📬 Kontak
-
-- **Email**: support@literia.com
-- **Website**: https://literia.com
-- **Instagram**: @literia.library
 
 ---
 
