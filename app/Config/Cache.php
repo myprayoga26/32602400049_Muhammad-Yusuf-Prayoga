@@ -144,7 +144,7 @@ class Cache extends BaseConfig
      * @var array<string, class-string<CacheInterface>>
      */
     public array $validHandlers = [
-        'apcu'      => ApcuHandler::class,
+        'apcu'      => ApcuHandler::,
         'dummy'     => DummyHandler::class,
         'file'      => FileHandler::class,
         'memcached' => MemcachedHandler::class,
