@@ -70,6 +70,18 @@ php spark serve
 | Gold 500 | `#AC554C` | Aksen utama |
 | Gold 600 | `#C5A556` | Aksen sekunder |
 
+## 🔄 Alur Kerja Sistem
+
+```mermaid
+graph TD
+    A[Pengguna] -->|Buka Browser / PWA| B[Landing Page / Katalog]
+    B -->|Pencarian / Filter| C[Alpine.js Interaktif]
+    B -->|Buka Detail / Baca| D[Controller CodeIgniter]
+    D -->|Fetch Data| E[(Database MySQL)]
+    E -->|Return Data| D
+    D -->|Render View| B
+```
+
 ## 📁 Struktur Kode
 
 ```
@@ -164,6 +176,9 @@ LITERIA siap digunakan sebagai Progressive Web App:
 
 ## 🌟 Best Practices
 
+- ✅ SQL Injection protection (via CodeIgniter Query Builder)
+- ✅ XSS Filtering pada masukan pencarian
+- ✅ Progressive Web App (PWA) Offline Caching
 - ✅ Semantic HTML5
 - ✅ CSS Custom Properties untuk theming
 - ✅ Lazy loading images
