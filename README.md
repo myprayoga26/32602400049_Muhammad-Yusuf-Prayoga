@@ -1,8 +1,30 @@
-# LITERIA - Premium Digital Library
+#📚 LITERIA - Premium Digital Library
+
+**LITERIA** adalah platform perpustakaan digital premium yang menghadirkan pengalaman katalog perpustakaan privat dengan koleksi buku yang benar-benar terkurasi. Dibangun di atas CodeIgniter 4 dengan fokus pada estetika, pengalaman pengguna yang mulus, dan fungsionalitas yang mendalam.
+
+📑 Daftar Isi
+- Tentang LITERIA
+- Fitur Utama
+- Teknologi
+- Struktur Proyek
+- Prasyarat
+- Instalasi & Setup
+- Setup Database
+- Membuat Akun Admin
+- Menjalankan Aplikasi
+- Skrip Utilitas
+- Testing
+- Palet Warna
+- PWA Support
+- Komponen Utama
+- Best Practices
+- Development (Asset Build)
+- Kontribusi
+- Lisensi
 
 ## 📚 Tentang LITERIA
 
-**LITERIA** adalah platform perpustakaan digital premium yang menghadirkan pengalaman katalog perpustakaan privat dengan koleksi buku yang benar-benar terkurasi. Dibangun dengan fokus pada estetika, pengalaman pengguna yang mulus, dan fungsionalitas yang mendalam.
+LITERIA menghadirkan pengalaman membaca dan menjelajah koleksi buku secara digital dengan tampilan premium, mendukung dark mode, pencarian real-time, filter kategori, serta dukungan sebagai Progressive Web App (PWA) yang bisa diinstal di perangkat pengguna.
 
 ### ✨ Fitur Utama
 
@@ -13,6 +35,7 @@
 - **📱 PWA Support** - Install sebagai aplikasi di perangkat Anda
 - **🌙 Dark Mode** - Pengalaman membaca yang nyaman di segala kondisi
 - **📊 Statistik Koleksi** - Informasi jumlah buku, stok, dan kategori
+- **🔐Panel Admin** - Manajemen kategori, badge, dan fitur buku (lihat Skrip Utilitas)
 
 ## 🚀 Teknologi
 
@@ -83,21 +106,38 @@ graph TD
 ```
 
 ## 📁 Struktur Kode
-
-```
-literia/
-├── assets/
-│   └── images/
-│       └── cinematic_library.png
-├── app/
-│   ├── Views/
-│   │   ├── web/
-│   │   │   └── _catalog_list.php
-│   │   └── header.php
-├── public/
-│   ├── sw.js
-│   └── manifest.json
+Litera/
+├── app/                     # Kode inti aplikasi CodeIgniter 4
+│   ├── Config/              # Konfigurasi aplikasi, database, rute, dll.
+│   ├── Controllers/         # Controller (logika request/response)
+│   ├── Models/              # Model (interaksi dengan database)
+│   ├── Views/                # Tampilan (termasuk partial seperti _catalog_list.php, header.php)
+│   └── ...
+├── public/                  # Document root — entry point aplikasi
+│   ├── index.php            # Front controller CodeIgniter
+│   ├── sw.js                # Service worker (PWA)
+│   └── manifest.json        # Web app manifest (PWA)
+├── tests/                   # Unit & feature test (PHPUnit)
+├── tools/                   # Skrip/alat bantu development
+├── writable/                # Cache, log, session, upload (harus writable)
+├── builds/                  # Hasil build/artefak
+├── .gitignore
+├── composer.json / composer.lock
+├── env                      # Contoh file environment (salin menjadi .env)
+├── spark                    # CLI CodeIgniter (php spark ...)
+├── phpunit.dist.xml         # Konfigurasi PHPUnit
+├── database_fresh.sql       # Dump database (skema bersih)
+├── literia_app.sql          # Dump database aplikasi LITERIA
+├── create_admin.php         # Skrip pembuatan akun admin
+├── reset_admin.php          # Skrip reset akun admin
+├── import_db.php            # Skrip import database
+├── update_db.php / update_db2.php   # Skrip migrasi/update skema
+├── migrate_badges.php       # Migrasi data badge
+├── migrate_features.php     # Migrasi data fitur buku
+├── add_kategori.php / add_kategori2.php  # Skrip penambahan kategori
+├── test.php                 # Skrip pengujian manual/debug
 └── README.md
+
 ```
 
 ## 🔧 Konfigurasi
