@@ -27,10 +27,10 @@ class UserDashboard extends BaseController
 
         // Ambil riwayat peminjaman khusus user ini
         $riwayat = $peminjamanModel->select('peminjaman.*, buku.judul')
-                                   ->join('buku', 'buku.id_buku = peminjaman.id_buku')
-                                   ->where('peminjaman.id_anggota', $id_anggota)
-                                   ->orderBy('peminjaman.id_pinjam', 'DESC')
-                                   ->findAll();
+            ->join('buku', 'buku.id_buku = peminjaman.id_buku')
+            ->where('peminjaman.id_anggota', $id_anggota)
+            ->orderBy('peminjaman.id_pinjam', 'DESC')
+            ->findAll();
 
         $shelf = $shelfModel->getUserShelf($id_anggota);
         $reading = array_values(array_filter($shelf, fn($item) => $item['status_baca'] === 'reading'));
@@ -127,21 +127,21 @@ class UserDashboard extends BaseController
         // Extract keywords from synopsis
         $sinopsis = strtolower($lastRead['sinopsis'] ?? '');
         $category = $lastRead['kategori'] ?? '';
-        
+
         $stopwords = ['dan', 'di', 'ke', 'dari', 'yang', 'untuk', 'pada', 'adalah', 'ini', 'itu', 'dengan', 'dalam', 'sebuah'];
         $words = str_word_count(preg_replace('/[^a-z]/', ' ', $sinopsis), 1);
         $words = array_diff($words, $stopwords);
-        
+
         // Count word frequency
         $freq = array_count_values($words);
         arsort($freq);
         $topKeywords = array_slice(array_keys($freq), 0, 3);
 
         $query = $bukuModel->where('id_buku !=', $lastRead['id_buku']);
-        
+
         if (!empty($category)) {
             $query->groupStart()
-                  ->where('kategori', $category);
+                ->where('kategori', $category);
             foreach ($topKeywords as $kw) {
                 if (strlen($kw) > 3) $query->orLike('sinopsis', $kw);
             }
@@ -235,7 +235,7 @@ class UserDashboard extends BaseController
         $catatan = $this->request->getPost('catatan') ?? '';
 
         $db = \Config\Database::connect();
-        
+
         $db->table('user_annotations')->insert([
             'id_anggota' => $id_anggota,
             'id_buku' => $id_buku,
@@ -412,8 +412,8 @@ class UserDashboard extends BaseController
         $nightReading = $db->table('reading_sessions')
             ->where('id_anggota', $id_anggota)
             ->groupStart()
-                ->where('HOUR(created_at) >=', 22)
-                ->orWhere('HOUR(created_at) <', 4)
+            ->where('HOUR(created_at) >=', 22)
+            ->orWhere('HOUR(created_at) <', 4)
             ->groupEnd()
             ->countAllResults(false);
         if ($nightReading > 0) {
